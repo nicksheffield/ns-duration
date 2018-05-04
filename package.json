@@ -2,7 +2,7 @@
   "name": "ns-duration",
   "version": "0.0.1",
   "description": "A library for creating durable work timers",
-  "main": "dist/index.js",
+  "main": "dist/nsDuration.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c"
