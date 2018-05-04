@@ -5,10 +5,11 @@ import { sum } from './utils'
 class Duration extends Timeframe {
 	static Capture = Capture
 	static Timeframe = Timeframe
-	
-	constructor() {
+
+	constructor(name = '') {
 		super()
 		this.captures = []
+		this.name = name
 	}
 
 	get duration() {
@@ -48,12 +49,12 @@ class Duration extends Timeframe {
 	}
 
 	save() {
-		localStorage.setItem('ns-duration', JSON.stringify(this))
+		localStorage.setItem('ns-duration-' + this.name, JSON.stringify(this))
 	}
 
 	restore(json) {
 		if (!json) {
-			json = localStorage.getItem('ns-duration') || '{"captures":[]}'
+			json = localStorage.getItem('ns-duration-' + this.name) || '{"captures":[]}'
 		}
 
 		this.captures = JSON.parse(json).captures.map(({ start, end }) => new Capture(start, end))
