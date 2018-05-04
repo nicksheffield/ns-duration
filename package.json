@@ -9,7 +9,15 @@
   },
   "keywords": [],
   "author": "Nick Sheffield <numbereft@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicksheffield/ns-duration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nicksheffield/ns-duration/issues"
+  },
+  "homepage": "https://github.com/nicksheffield/ns-duration#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
