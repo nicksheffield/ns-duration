@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<button id="startButton">start</button>
+	<button id="stopButton">stop</button>
+	<button id="clearButton">clear</button>
+	<p id="displayField">00:00:00.0000</p>
+
+	<script src="../dist/nsDuration.js"></script>
+	<script>
+		const startButton = document.getElementById('startButton')
+		const stopButton = document.getElementById('stopButton')
+		const clearButton = document.getElementById('clearButton')
+		const displayField = document.getElementById('displayField')
+
+		// Create a duration object
+		const dur = new Duration('myTimer')
+
+		// To start the duration
+		startButton.addEventListener('click', e => {
+			dur.start()
+		})
+
+		// To pause the duration
+		stopButton.addEventListener('click', e => {
+			dur.stop()
+		})
+
+		// To clear the duration
+		clearButton.addEventListener('click', e => {
+			dur.clear()
+		})
+
+		// Displaying the duration on screen using requestAnimationFrame
+		;(function loop() {
+			requestAnimationFrame(loop)
+			displayField.innerHTML = dur.format('HH:mm:ss.SSS')
+		})()
+	</script>
+</body>
+</html>

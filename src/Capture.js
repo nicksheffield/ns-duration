@@ -7,8 +7,12 @@ export class Capture extends Timeframe {
 		this.end = typeof end === 'string' ? new Date(end) : end
 	}
 
-	get duration() {
+	get milliseconds() {
 		return (this.end ? this.end.valueOf() : new Date()) - this.start.valueOf()
+	}
+
+	get isRunning() {
+		return !this.end
 	}
 
 	stop() {

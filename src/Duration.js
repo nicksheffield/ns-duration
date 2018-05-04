@@ -13,16 +13,12 @@ class Duration extends Timeframe {
 		this.restore()
 	}
 
-	get duration() {
-		return this.captures.map(x => x.duration).reduce(sum, 0)
+	get milliseconds() {
+		return this.captures.map(x => x.milliseconds).reduce(sum, 0)
 	}
 
 	get isRunning() {
-		if (!this.captures.length) {
-			return false
-		} else {
-			return !this.captures[this.captures.length - 1].end
-		}
+		return this.captures.reduce((acc, cap) => acc || cap.isRunning, false)
 	}
 
 	start() {
@@ -37,11 +33,7 @@ class Duration extends Timeframe {
 	}
 
 	toggle() {
-		if (this.isRunning) {
-			this.stop()
-		} else {
-			this.start()
-		}
+		this[this.isRunning ? 'stop' : 'start']()
 	}
 
 	clear() {
@@ -54,9 +46,7 @@ class Duration extends Timeframe {
 	}
 
 	restore(json) {
-		if (!json) {
-			json = localStorage.getItem('ns-duration-' + this.name) || '{"captures":[]}'
-		}
+		json = json || localStorage.getItem('ns-duration-' + this.name) || '{"captures":[]}'
 
 		this.captures = JSON.parse(json).captures.map(({ start, end }) => new Capture(start, end))
 	}
