@@ -64,9 +64,11 @@ var Duration = (function () {
 
 	let Duration = (_temp = _class$1 = class Duration extends Timeframe {
 
-		constructor() {
+		constructor(name = '') {
 			super();
 			this.captures = [];
+			this.name = name;
+			this.restore();
 		}
 
 		get duration() {
@@ -106,12 +108,12 @@ var Duration = (function () {
 		}
 
 		save() {
-			localStorage.setItem('ns-duration', JSON.stringify(this));
+			localStorage.setItem('ns-duration-' + this.name, JSON.stringify(this));
 		}
 
 		restore(json) {
 			if (!json) {
-				json = localStorage.getItem('ns-duration') || '{"captures":[]}';
+				json = localStorage.getItem('ns-duration-' + this.name) || '{"captures":[]}';
 			}
 
 			this.captures = JSON.parse(json).captures.map(({ start, end }) => new Capture(start, end));

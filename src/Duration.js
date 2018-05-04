@@ -10,6 +10,7 @@ class Duration extends Timeframe {
 		super()
 		this.captures = []
 		this.name = name
+		this.restore()
 	}
 
 	get duration() {
