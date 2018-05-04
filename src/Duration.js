@@ -3,10 +3,12 @@ import Capture from './Capture'
 import { sum } from './utils'
 
 class Duration extends Timeframe {
+	static Capture = Capture
+	static Timeframe = Timeframe
+	
 	constructor() {
 		super()
 		this.captures = []
-		
 	}
 
 	get duration() {
